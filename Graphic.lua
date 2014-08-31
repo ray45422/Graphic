@@ -325,7 +325,6 @@ namespace "ray"{
 					f=v
 					z=math.floor(f/200)*100
 				end
-				out(23,f)
 				local m=math.min(math.min(w,h)*0.9/f,1)
 				local ay=_AY()
 				self:SetPen(2)
