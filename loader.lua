@@ -1,4 +1,7 @@
 return {
 	{"Graphic.lua"};
-	depends = {"cel/Equa"}
+	depends = {
+		"cel/Equa",
+		"ray"
+	}
 }
