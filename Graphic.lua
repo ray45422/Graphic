@@ -382,4 +382,42 @@ namespace "ray"{
 		);
 	};
 };
-
+namespace "ray"{
+	namespace "line3D"{
+		class "contrail"{
+			metamethod "_init"
+			:body(
+				function(self,cn,ac)
+					self.cn=cn
+					self.BP=BasePhysic:new(cn)
+					self.d={}
+					self.ac=ac or 40
+				end
+			);
+			method "tick"
+			:body(
+				function(self)
+					self.BP:Renew()
+					if math.abs(LEN(self.BP.lay,self.BP.lax))>self.ac then
+						table.insert(self.d,1,{x=_X(self.cn),y=_Y(self.cn),z=_Z(self.cn)})
+						if table.getn(self.d)>10 then
+							table.remove(self.d,11)
+						end
+					else
+						if table.getn(self.d)>0 then
+							table.remove(self.d,11)
+						end
+					end
+					_SETCOLOR(tonumber("FFFFFF",16))
+					for i,data in self.d do
+						if i==1 then
+							_MOVE3D(data.x,data.y,data.z)
+						else
+							_LINE3D(data.x,data.y,data.z)
+						end
+					end
+				end
+			);
+		};
+	};
+};
